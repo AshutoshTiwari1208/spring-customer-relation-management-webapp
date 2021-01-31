@@ -7,5 +7,6 @@
 <body>
 List of customers soon...
 
+${ customers }
 </body>
 </html>
