@@ -20,6 +20,12 @@
 			<h2>CRM - Customer [Relationship] Management</h2>		
 		</div>
 	</div>
+	
+	<div id="button-primary">
+		<input type="button" value="Add New Customer"
+				onClick="window.location.href='addCustomerForm'; return false;" 
+		/>
+	</div>
 
 	<div id="container">
 		<div id="content">
