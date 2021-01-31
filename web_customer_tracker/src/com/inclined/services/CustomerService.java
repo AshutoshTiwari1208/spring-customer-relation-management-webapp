@@ -7,4 +7,6 @@ import com.inclined.entity.Customer;
 public interface CustomerService {
 
 	public List<Customer> getCustomers();
+
+	public void save(Customer customer);
 }
