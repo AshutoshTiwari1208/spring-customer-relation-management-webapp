@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.inclined.entity.Customer;
 
@@ -28,7 +27,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void save(Customer customer) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(customer);
+		session.saveOrUpdate(customer);
+	}
+
+	@Override
+	public Customer getCustomer(Integer id) {
+		Session session = sessionFactory.getCurrentSession();
+		Customer customer = session.get(Customer.class, id);
+		return customer;
 	}
 
 }

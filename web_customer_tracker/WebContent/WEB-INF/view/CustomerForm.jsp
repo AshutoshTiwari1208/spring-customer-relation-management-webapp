@@ -38,7 +38,8 @@
 				</tr>					
 			</tbody>
 			</table>
-				<input type="submit" value="Submit" class="save"/>
+			<form:hidden path="id" /> 
+			<input type="submit" value="Submit" class="save"/>
 		</form:form>
 		
 		<br/><br/>

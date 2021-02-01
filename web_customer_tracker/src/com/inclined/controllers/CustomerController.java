@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inclined.entity.Customer;
 import com.inclined.services.CustomerService;
@@ -39,5 +40,13 @@ public class CustomerController {
 		customerService.save(customer);
 		return "redirect:/customer/list";
 	}
+	
+	@GetMapping("/updateCustomerForm")
+	public String getUpdateCustomerForm(@RequestParam("customerId")Integer id, Model model) {
+		Customer customer = customerService.getCustomer(id);
+		model.addAttribute("customer", customer);
+		return "CustomerForm";
+	}
+	
 
 }
