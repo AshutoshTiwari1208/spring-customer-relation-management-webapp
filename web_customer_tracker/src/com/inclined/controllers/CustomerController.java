@@ -22,8 +22,11 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@GetMapping("/list")
-	public String getCustomersList(Model model) {
-		List<Customer> customers = customerService.getCustomers();
+	public String getCustomersList(@RequestParam(name="sort",required=false)String sort, Model model) {
+		
+		List<Customer> customers;
+		int sortField = sort!=null ? Integer.parseInt(sort) : 1;
+		customers = customerService.getCustomers(sortField);
 		model.addAttribute("customers", customers);
 		return "CustomersList";
 	}
@@ -48,5 +51,19 @@ public class CustomerController {
 		return "CustomerForm";
 	}
 	
-
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerId")int id) {
+		customerService.deleteCustomer(id);
+		return "redirect:/customer/list";
+	}
+	
+	@GetMapping("/search")
+	public String searchCustomers(@RequestParam("searchQuery")String searchQuery, Model model) {
+		List<Customer> customers = customerService.searchCustomers(searchQuery);
+		model.addAttribute("customers", customers);
+		boolean isNonEmptyString = searchQuery.length()==0? false: true;
+		model.addAttribute("search", isNonEmptyString);
+		return "CustomersList";
+	}
+		
 }
